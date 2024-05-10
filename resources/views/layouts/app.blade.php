@@ -14,22 +14,26 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.navigation')
 
-        <div class="flex w-full">
+        <div class="flex h-screen w-full relative">
             <!-- sidebar -->
 
-            <x-side-bar class="dark:text-white">
+            <x-side-bar class="dark:text-white sticky">
                 <p>{{ auth()->user()->name }}</p>
             </x-side-bar>
 
             <!-- Page Content -->
-            <main class="w-full overflow-auto">
-                {{ $slot }}
+            <main class="w-full overflow-auto scroll">
+                <div>
+                    {{ $slot }}
+                </div>
+
             </main>
         </div>
 
