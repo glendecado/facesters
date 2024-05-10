@@ -34,12 +34,18 @@ class PostController extends Controller
         ->with('success', 'Post created successfully.');
     }
 
-    public function destroy($id)
+    //update
+    public function update(Request $request, Post $post)
     {
-        Post::destroy($id);
+        $post->update($request->all());
+        return redirect()->route('dashboard');
+    }
 
-        return redirect()->route('dashboard')
-        ->with('success', 'Post deleted successfully');
+    //delete
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('dashboard');
     }
 
 

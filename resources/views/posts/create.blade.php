@@ -1,7 +1,7 @@
 <div x-data>
-    <button type="button" @click="$dispatch('open-modal',  'post')"> Create Post </button>
+    <button type="button" @click="$dispatch('open-modal',  'post-create')"> Create Post </button>
 
-    <x-modal name="post">
+    <x-modal name="post-create">
         <div class="m-5">
             <form action="{{route('posts.store')}}" method="post">
                 @method('post')

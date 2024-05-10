@@ -8,14 +8,10 @@
                 <p class="text-gray-700 dark:text-gray-300">{{ $post->content }}</p>
                 {{--for users post--}}
                 @if(Auth::id() === $post->user_id)
-                <div class="text-end">
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                            Delete
-                        </button>
-                    </form>
+                <div class="flex gap-2 justify-end">
+
+                    @include('posts.edit')
+                    @include('posts.delete')
                 </div>
 
                 @endif

@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //for post
-    Route::prefix('posts')->group(function () {
+    /*     Route::prefix('posts')->group(function () {
         // Route to display all posts
         Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
@@ -41,7 +41,18 @@ Route::middleware('auth')->group(function () {
 
         // Route to delete a post from the database
         Route::delete('/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-    });
+    }); */
+    //all in resource
+/* {    
+    GET         /posts                  index   posts.index
+    GET         /posts/create           create  posts.create
+    POST        /posts                  store   posts.store
+    GET         /posts/{post}           show    posts.show
+    GET         /posts/{post}/edit      edit    posts.edit
+    PUT/PATCH   /posts/{post}           update  posts.update
+    DELETE      /posts/{post}           destroy posts.destroy }   */
+    
+    Route::resource('posts', PostController::class);
 });
 
 require __DIR__.'/auth.php';
