@@ -27,7 +27,7 @@
             </x-side-bar>
 
             <!-- Page Content -->
-            <main class="border w-full overflow-auto">
+            <main class="w-full overflow-auto">
                 {{ $slot }}
             </main>
         </div>
