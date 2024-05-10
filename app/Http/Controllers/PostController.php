@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    private $redirect = 'dashboard';
     public function index()
     {
         $Post = Post::all();
@@ -15,37 +17,39 @@ class PostController extends Controller
     }
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
 
-        $user = Auth::user(); // Get the currently authenticated user
-
-        // Create the new post with the user's ID
+        // Create the new post
         $post = new Post([
             'title' => $request->title,
             'content' => $request->content,
         ]);
 
-        $user->posts()->save($post);
+        //in model the function user(){ return post->belongsTo(User::class);}
+        $userId = Auth::id();
+        $user = User::find($userId);
+        $post->user()->associate($user);
+        $post->save();
 
-        return redirect()->route('dashboard')
-        ->with('success', 'Post created successfully.');
+        return redirect()->route($this->redirect)->with('success', 'Post created successfully.');
     }
 
     //update
     public function update(Request $request, Post $post)
     {
         $post->update($request->all());
-        return redirect()->route('dashboard');
+        return redirect()->route($this->redirect)->with('success', 'Post updated successfully.');
     }
 
     //delete
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route($this->redirect)->with('success', 'Post deleted successfully.');
     }
 
 
