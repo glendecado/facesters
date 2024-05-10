@@ -2,7 +2,9 @@
     <button type="button" @click="$dispatch('open-modal',  'post-create')"> Create Post </button>
 
     <x-modal name="post-create">
+        
         <div class="m-5">
+            <p class="text-center">Create post</p>
             <form action="{{route('posts.store')}}" method="post">
                 @method('post')
                 @csrf

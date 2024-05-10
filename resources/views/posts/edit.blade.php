@@ -3,7 +3,7 @@
 
     <x-modal name="{{$post->id}}">
         <div class="m-5">
-            <p>Update</p>
+            <p class="text-center">Update</p>
             <form action="{{ route('posts.update', $post->id) }}" method="post">
                 @method('PUT')
                 @csrf
