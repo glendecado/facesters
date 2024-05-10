@@ -22,8 +22,9 @@
 
         <div class="flex w-full">
             <!-- sidebar -->
-            <x-side-bar>
-                {{ auth()->user()->name }}
+
+            <x-side-bar class="dark:text-white">
+                <p>{{ auth()->user()->name }}</p>
             </x-side-bar>
 
             <!-- Page Content -->
